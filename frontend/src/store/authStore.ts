@@ -27,8 +27,8 @@ interface AuthStore {
   updateProfile: (data: { full_name?: string; bio?: string; avatar_url?: string }) => Promise<void>
 }
 
-const BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000/api'
-const API_URL = `${BASE_URL}/api`
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://mvpforge-backend.onrender.com/api'
+// const API_URL = `${BASE_URL}/api`
 
 export const useAuthStore = create<AuthStore>()(persist(
   (set, get) => ({
