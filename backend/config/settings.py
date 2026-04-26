@@ -25,7 +25,7 @@ class Settings(BaseSettings):
         "http://localhost:8000",
         "https://mvpforge-backend.onrender.com",
         "https://mvpforge2-1rx0oax2y-meet734s-projects.vercel.app",
-        "mvpforge2-9vw5x4kw6-meet734s-projects.vercel.app"
+        "https://mvpforge2-9vw5x4kw6-meet734s-projects.vercel.app"
     ]
 
     # Database
