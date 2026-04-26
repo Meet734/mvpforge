@@ -27,7 +27,8 @@ interface AuthStore {
   updateProfile: (data: { full_name?: string; bio?: string; avatar_url?: string }) => Promise<void>
 }
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000/api'
+const BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000/api'
+const API_URL = `${BASE_URL}/api`
 
 export const useAuthStore = create<AuthStore>()(persist(
   (set, get) => ({
