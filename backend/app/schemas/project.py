@@ -1,0 +1,75 @@
+from pydantic import BaseModel, Field
+from typing import Optional, Dict, Any
+from datetime import datetime
+
+class Stage1ChatInput(BaseModel):
+    message: str = Field(..., description="User message for Stage 1 discovery chat")
+
+class Stage1ProceedInput(BaseModel):
+    force: bool = Field(default=False, description="Force proceed even if readiness score is below threshold")
+
+class Stage2ToggleFeature(BaseModel):
+    epic_id: str
+    feature_id: str
+    enabled: bool
+
+class Stage2ConfirmInput(BaseModel):
+    pass
+
+class Stage3StoryMove(BaseModel):
+    story_id: str
+    new_status: str
+
+class Stage3StoryEdit(BaseModel):
+    story_id: str
+    field: str
+    value: Any
+
+class Stage3RegenerateStory(BaseModel):
+    story_id: str
+    prompt: str
+
+class Stage4ModifyRequest(BaseModel):
+    prompt: str
+
+class Stage5EditRequest(BaseModel):
+    screen_id: str
+    prompt: str
+
+class Stage5ApproveScreen(BaseModel):
+    screen_id: str
+
+class Stage6EditTask(BaseModel):
+    task_id: str
+    updates: Dict[str, Any]
+
+class Stage6EditManifest(BaseModel):
+    updates: Dict[str, Any]
+
+class Stage7GenerateRequest(BaseModel):
+    confirm: bool = Field(default=False, description="Must be true to confirm generation")
+    
+class Stage7TestCase(BaseModel):
+    test_id: str
+    description: str
+    input: Dict[str, Any]
+    expected_output: Dict[str, Any]
+
+class ProjectResponse(BaseModel):
+    id: str
+    owner_id: str
+    name: str
+    description: Optional[str] = None
+    current_stage: int
+    created_at: datetime
+    updated_at: datetime
+    stage1: Optional[Dict[str, Any]] = None
+    stage2: Optional[Dict[str, Any]] = None
+    stage3: Optional[Dict[str, Any]] = None
+    stage4: Optional[Dict[str, Any]] = None
+    stage5: Optional[Dict[str, Any]] = None
+    stage6: Optional[Dict[str, Any]] = None
+    stage7: Optional[Dict[str, Any]] = None
+
+    class Config:
+        arbitrary_types_allowed = True
