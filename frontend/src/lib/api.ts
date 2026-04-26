@@ -1,6 +1,7 @@
 import axios from 'axios'
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://mvpforge-backend.onrender.com/api'
+console.log(API_URL)
 
 const getAuthToken = () => {
   if (typeof window === 'undefined') return null
